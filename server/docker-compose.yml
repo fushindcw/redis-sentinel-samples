@@ -1,0 +1,33 @@
+version: '3.5'
+services:
+  redis-master:
+    container_name: redis-master
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis-master.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+  redis-slave1:
+    container_name: redis-slave1
+    image: redis
+    restart: always
+    ports:
+      - 6380:6380
+    volumes:
+      - ./redis-slave1.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+  redis-slave2:
+    container_name: redis-slave2
+    image: redis
+    restart: always
+    ports:
+      - 6381:6381
+    volumes:
+      - ./redis-slave2.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+networks:
+  default:
+    name: mybridge
+    external: true
