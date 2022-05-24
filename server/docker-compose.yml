@@ -8,6 +8,7 @@ services:
       - 6379:6379
     volumes:
       - ./redis-master.conf:/usr/local/etc/redis/redis.conf
+      - ./data/redis-master:/data
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
   redis-slave1:
     container_name: redis-slave1
@@ -17,6 +18,7 @@ services:
       - 6380:6380
     volumes:
       - ./redis-slave1.conf:/usr/local/etc/redis/redis.conf
+      - ./data/redis-slave1:/data
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
   redis-slave2:
     container_name: redis-slave2
@@ -26,6 +28,7 @@ services:
       - 6381:6381
     volumes:
       - ./redis-slave2.conf:/usr/local/etc/redis/redis.conf
+      - ./data/redis-slave2:/data
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
 networks:
   default:
